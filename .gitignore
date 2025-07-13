@@ -1,0 +1,11 @@
+#IDEA文件
+.idea
+#测试文件
+**/test/
+*Test.java
+#忽略编译生成文件
+**/target/
+#忽略iml配置文件
+*.xml
+#忽略编译生成的字节码文件
+*.class
