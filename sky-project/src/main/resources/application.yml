@@ -1,0 +1,41 @@
+# 配置服务器端口号
+server:
+  port: 8080
+# 启动开发环境配置文件
+spring:
+  profiles:
+    active: dev
+  #处理循环依赖问题
+  main:
+    allow-circular-references: true
+  #配置数据库
+  datasource:
+    driver-class-name: ${spring.datasource.driver-class-name}
+    password: ${spring.datasource.password}
+    name: ${spring.datasource.name}
+    url: ${spring.datasource.url}
+  # 配置网络请求大小
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+# 配置mybatis
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  # 配置映射文件的地址
+  mapper-locations: classpath:mapper/*.xml
+  # 给实体类起别名
+  type-aliases-package: sky.common
+
+# 配置日志级别
+logging:
+  level:
+    com:
+      sky:
+        mapper: debug
+        service: info
+        controller: info
+  org.springframework.jdbc.support.JdbcTransactionManager: debug
+
