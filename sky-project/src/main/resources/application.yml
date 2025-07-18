@@ -12,7 +12,7 @@ spring:
   datasource:
     driver-class-name: ${spring.datasource.driver-class-name}
     password: ${spring.datasource.password}
-    name: ${spring.datasource.name}
+    username: ${spring.datasource.username}
     url: ${spring.datasource.url}
   # 配置网络请求大小
   servlet:
@@ -27,7 +27,7 @@ mybatis:
   # 配置映射文件的地址
   mapper-locations: classpath:mapper/*.xml
   # 给实体类起别名
-  type-aliases-package: sky.common
+  type-aliases-package: sky.pojo
 
 # 配置日志级别
 logging:
@@ -38,4 +38,14 @@ logging:
         service: info
         controller: info
   org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+sky:
+  take:
+    out:
+      secretKey: ${sky.take.out.secretKey}
+      ttlTime: ${sky.take.out.ttlTime}
+
+  context:
+    component-scan:
+      base-package: property
 

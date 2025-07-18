@@ -13,15 +13,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Employee implements Serializable {
-    private long id;
+    private Long id;
     private String name;
     private String username;
     private String phone;
+    private String password;
     private String sex;
     private String idNumber;
     private Integer status;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
-    private long createUser;
-    private long updateUser;
+    private Integer createUser;
+    private Integer updateUser;
 }
