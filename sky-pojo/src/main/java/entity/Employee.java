@@ -23,6 +23,6 @@ public class Employee implements Serializable {
     private Integer status;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
-    private Integer createUser;
-    private Integer updateUser;
+    private Long createUser;
+    private Long updateUser;
 }

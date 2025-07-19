@@ -1,5 +1,6 @@
 package sky.project.controller.admin;
 
+import dto.EmpDTO;
 import dto.EmployeeLoginDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -26,5 +27,12 @@ public class EmployeeController {
         log.info("员工登录信息:{}",employeeLoginDTO);
         EmployeeLoginVO employeeLoginVO = employeeService.empLoginService(employeeLoginDTO);
         return Result.success(employeeLoginVO);
+    }
+
+    @PostMapping
+    public Result addEmpController(@RequestBody EmpDTO empDTO){
+        log.info("新增员工：{}",empDTO);
+        employeeService.addEmpService(empDTO);
+        return Result.success();
     }
 }

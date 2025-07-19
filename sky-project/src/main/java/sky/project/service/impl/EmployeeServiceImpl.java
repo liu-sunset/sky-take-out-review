@@ -1,17 +1,23 @@
 package sky.project.service.impl;
 
 import constant.EmpConstant;
+import dto.EmpDTO;
 import dto.EmployeeLoginDTO;
 import entity.Employee;
 import exception.EmpException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import property.JWTProperty;
 import sky.project.mapper.EmployeeMapper;
 import sky.project.service.EmployeeService;
+import utils.BaseContext;
 import utils.JWTUtils;
 import vo.EmployeeLoginVO;
+
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         //构建token
         Map<String, Object> map = new HashMap<>();
-        map.put("empId",employeeList.get(0).getId());
+        map.put(EmpConstant.EMP_ID_INTERCEPTER,employeeList.get(0).getId());
         String token = JWTUtils.createJWT(jwtProperty.getSecretKey(), jwtProperty.getTtlTime(), map);
         EmployeeLoginVO employeeLoginVO = EmployeeLoginVO.builder()
                 .token(token)
@@ -57,5 +63,20 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .username(employeeList.get(0).getUsername())
                 .build();
         return employeeLoginVO;
+    }
+
+    //新增员工
+    @Override
+    public void addEmpService(EmpDTO empDTO) {
+        String password = DigestUtils.md5DigestAsHex("123456".getBytes(StandardCharsets.UTF_8));
+        Employee employee = Employee.builder()
+                .createTime(LocalDateTime.now())
+                .updateTime(LocalDateTime.now())
+                .createUser(BaseContext.getId())
+                .updateUser(BaseContext.getId())
+                .password(password)
+                .build();
+        BeanUtils.copyProperties(empDTO,employee);
+        employeeMapper.addEmpMapper(employee);
     }
 }
