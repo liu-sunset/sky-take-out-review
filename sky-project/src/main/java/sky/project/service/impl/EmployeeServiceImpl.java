@@ -3,16 +3,21 @@ package sky.project.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import constant.EmpConstant;
+import dto.EditPasswordDTO;
 import dto.EmpDTO;
 import dto.EmpPageDTO;
 import dto.EmployeeLoginDTO;
 import entity.Employee;
 import exception.EmpException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import property.JWTProperty;
+import result.Result;
 import sky.project.mapper.EmployeeMapper;
 import sky.project.service.EmployeeService;
 import utils.BaseContext;
@@ -29,6 +34,7 @@ import java.util.Objects;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+    private static final Logger log = LoggerFactory.getLogger(EmployeeServiceImpl.class);
     @Autowired
     private EmployeeMapper employeeMapper;
     @Autowired
@@ -107,4 +113,45 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .build();
         employeeMapper.empModifyMapper(employee);
     }
+
+    //根据ID查询员工
+    @Override
+    public Employee selectEmpByIdService(long id) {
+        Employee employee = Employee.builder()
+                .id(id)
+                .build();
+        return employeeMapper.selectEmpMapper(employee).get(0);
+    }
+
+    //修改员工信息
+    @Override
+    public void modifyEmpService(EmpDTO empDTO) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(empDTO,employee);
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getId());
+        employeeMapper.empModifyMapper(employee);
+    }
+
+    //修改员工密码
+    @Override
+    public void edieEmpPasswordService(EditPasswordDTO editPasswordDTO) {
+        String md5OldPassword = DigestUtils.md5DigestAsHex(editPasswordDTO.getOldPassword().getBytes(StandardCharsets.UTF_8));
+        String md5NewPassword = DigestUtils.md5DigestAsHex(editPasswordDTO.getNewPassword().getBytes(StandardCharsets.UTF_8));
+        editPasswordDTO.setOldPassword(md5OldPassword);
+        editPasswordDTO.setNewPassword(md5NewPassword);
+        Employee employee = Employee.builder()
+                .id(editPasswordDTO.getEmpId())
+                .password(editPasswordDTO.getOldPassword())
+                .build();
+        List<Employee> employeeList = employeeMapper.selectEmpMapper(employee);
+        if(employeeList.isEmpty()){
+            throw new EmpException(EmpConstant.EMP_PASSWORD_ERROR);
+        }
+        employee.setPassword(editPasswordDTO.getNewPassword());
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getId());
+        employeeMapper.empModifyMapper(employee);
+    }
+
 }
