@@ -1,7 +1,10 @@
 package sky.project.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import constant.EmpConstant;
 import dto.EmpDTO;
+import dto.EmpPageDTO;
 import dto.EmployeeLoginDTO;
 import entity.Employee;
 import exception.EmpException;
@@ -14,6 +17,7 @@ import sky.project.mapper.EmployeeMapper;
 import sky.project.service.EmployeeService;
 import utils.BaseContext;
 import utils.JWTUtils;
+import vo.EmpPageVO;
 import vo.EmployeeLoginVO;
 
 import java.nio.charset.StandardCharsets;
@@ -78,5 +82,17 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .build();
         BeanUtils.copyProperties(empDTO,employee);
         employeeMapper.addEmpMapper(employee);
+    }
+
+    //员工分页查询
+    @Override
+    public EmpPageVO empPageService(EmpPageDTO empPageDTO) {
+        //开始分页查询
+        PageHelper.startPage(empPageDTO.getPage(), empPageDTO.getPageSize());
+        Page<Employee> page = employeeMapper.empPageMapper(empPageDTO);
+        return EmpPageVO.builder()
+                .total(page.getTotal())
+                .records(page.getResult())
+                .build();
     }
 }
