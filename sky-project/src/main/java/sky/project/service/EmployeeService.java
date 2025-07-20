@@ -15,4 +15,6 @@ public interface EmployeeService {
     public void addEmpService(EmpDTO empDTO);
     //员工分页查询
     public EmpPageVO empPageService(EmpPageDTO empPageDTO);
+    //员工账号状态修改
+    public void empStatusModifyService(Integer status,long id);
 }

@@ -95,4 +95,16 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .records(page.getResult())
                 .build();
     }
+
+    //员工账号状态修改
+    @Override
+    public void empStatusModifyService(Integer status, long id) {
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .updateTime(LocalDateTime.now())
+                .updateUser(BaseContext.getId())
+                .build();
+        employeeMapper.empModifyMapper(employee);
+    }
 }

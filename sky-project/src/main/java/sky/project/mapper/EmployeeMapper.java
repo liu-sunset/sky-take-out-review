@@ -14,4 +14,6 @@ public interface EmployeeMapper {
     public void addEmpMapper(Employee employee);
     //员工分页查询
     public Page<Employee> empPageMapper(EmpPageDTO empPageDTO);
+    //修改员工信息
+    public void empModifyMapper(Employee employee);
 }

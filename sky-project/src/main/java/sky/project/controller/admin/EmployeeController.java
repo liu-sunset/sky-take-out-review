@@ -41,4 +41,11 @@ public class EmployeeController {
         EmpPageVO empPageVO = employeeService.empPageService(empPageDTO);
         return Result.success(empPageVO);
     }
+
+    @PostMapping("/status/{status}")
+    public Result empStatusModifyController(@PathVariable Integer status,long id){
+        log.info("员工账号id{}状态修改为{}",status,id);
+        employeeService.empStatusModifyService(status,id);
+        return Result.success();
+    }
 }
