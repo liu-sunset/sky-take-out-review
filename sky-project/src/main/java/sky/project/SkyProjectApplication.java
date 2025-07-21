@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"sky.project","property","handler","intercepter"})
+@ComponentScan({"sky.project","property","handler","intercepter","utils"})
 public class SkyProjectApplication {
     public static void main(String[] args) {
         SpringApplication.run(SkyProjectApplication.class, args);

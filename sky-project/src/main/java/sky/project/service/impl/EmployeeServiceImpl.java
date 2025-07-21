@@ -80,10 +80,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void addEmpService(EmpDTO empDTO) {
         String password = DigestUtils.md5DigestAsHex("123456".getBytes(StandardCharsets.UTF_8));
         Employee employee = Employee.builder()
-                .createTime(LocalDateTime.now())
-                .updateTime(LocalDateTime.now())
-                .createUser(BaseContext.getId())
-                .updateUser(BaseContext.getId())
                 .password(password)
                 .build();
         BeanUtils.copyProperties(empDTO,employee);
@@ -108,8 +104,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = Employee.builder()
                 .status(status)
                 .id(id)
-                .updateTime(LocalDateTime.now())
-                .updateUser(BaseContext.getId())
                 .build();
         employeeMapper.empModifyMapper(employee);
     }
@@ -128,8 +122,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void modifyEmpService(EmpDTO empDTO) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(empDTO,employee);
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getId());
         employeeMapper.empModifyMapper(employee);
     }
 
@@ -149,8 +141,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmpException(EmpConstant.EMP_PASSWORD_ERROR);
         }
         employee.setPassword(editPasswordDTO.getNewPassword());
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getId());
         employeeMapper.empModifyMapper(employee);
     }
 
