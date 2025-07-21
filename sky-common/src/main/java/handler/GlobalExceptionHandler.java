@@ -6,7 +6,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import result.Result;
-
 import java.sql.SQLIntegrityConstraintViolationException;
 
 
