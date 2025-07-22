@@ -10,7 +10,6 @@ import java.sql.SQLIntegrityConstraintViolationException;
 
 
 @Slf4j
-@Order(Ordered.HIGHEST_PRECEDENCE)
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     /*
