@@ -23,4 +23,6 @@ public interface CategoryMapper {
     public void deleteCateMapper(long id);
     //根据type查找分类
     public List<Category> selectByTypeMapper(Integer type);
+    //根据ID查询category的name
+    public String selectNameByIdMapper(long id);
 }

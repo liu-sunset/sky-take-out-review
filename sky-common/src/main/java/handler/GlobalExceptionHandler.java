@@ -1,13 +1,10 @@
 package handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import result.Result;
 import java.sql.SQLIntegrityConstraintViolationException;
-
 
 @Slf4j
 @RestControllerAdvice
@@ -18,7 +15,7 @@ public class GlobalExceptionHandler {
     * */
     @ExceptionHandler
     public Result exceptionHandler(RuntimeException e){
-        if (e.getCause() instanceof SQLIntegrityConstraintViolationException){
+        if (e.getCause() instanceof SQLIntegrityConstraintViolationException && e.getMessage().contains("Duplicate entry")){
             SQLIntegrityConstraintViolationException se = (SQLIntegrityConstraintViolationException) e.getCause();
             String[] splits = se.getMessage().split(" ");
             log.error("SQL异常信息:{}","已存在"+splits[2]);

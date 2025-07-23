@@ -1,5 +1,7 @@
-package entity;
+package vo;
 
+import entity.DishFlavor;
+import jdk.jfr.Description;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,18 +15,15 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Dish implements Serializable{
-    private Long id;
-    private String name;
+public class ModifyDishVO implements Serializable {
     private Long categoryId;
-    private Double price;
-    private String image;
+    private String categoryName;
     private String description;
-    private Integer status;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
-    private Long createUser;
-    private Long updateUser;
-
     private List<DishFlavor> flavors;
+    private Long id;
+    private String image;
+    private String name;
+    private Double price;
+    private Integer status;
+    private LocalDateTime updateTime;
 }
