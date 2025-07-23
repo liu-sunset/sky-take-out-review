@@ -7,6 +7,8 @@ import entity.Category;
 import enums.OperStat;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CategoryMapper {
     //新增分类
@@ -19,4 +21,6 @@ public interface CategoryMapper {
     public void modifyCateMapper(Category category);
     //删除分类
     public void deleteCateMapper(long id);
+    //根据type查找分类
+    public List<Category> selectByTypeMapper(Integer type);
 }

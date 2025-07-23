@@ -12,6 +12,8 @@ import sky.project.mapper.CategoryMapper;
 import sky.project.service.CategoryService;
 import vo.CatePageVO;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
@@ -57,5 +59,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCateService(Long id) {
         categoryMapper.deleteCateMapper(id);
+    }
+
+    //根据type查找分类
+    @Override
+    public List<Category> selectByTypeService(Integer type) {
+        return categoryMapper.selectByTypeMapper(type);
     }
 }

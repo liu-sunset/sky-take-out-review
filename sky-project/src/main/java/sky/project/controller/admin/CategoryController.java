@@ -2,6 +2,7 @@ package sky.project.controller.admin;
 
 import dto.CatePageDTO;
 import dto.CategoryDTO;
+import entity.Category;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.io.ResolverUtil;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import result.Result;
 import sky.project.service.CategoryService;
 import vo.CatePageVO;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -51,5 +54,12 @@ public class CategoryController {
         log.info("删除分类:{}",id);
         categoryService.deleteCateService(id);
         return Result.success();
+    }
+
+    @GetMapping("/list")
+    public Result selectByTypeController(Integer type){
+        log.info("查找type是{}的分类",type);
+        List<Category> categoryList = categoryService.selectByTypeService(type);
+        return Result.success(categoryList);
     }
 }

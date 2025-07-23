@@ -49,3 +49,9 @@ sky:
     component-scan:
       base-package: property
 
+  aliyunoss:
+    bucket-name: ${AliyunOSS.bucket-name}
+    endpoint: ${AliyunOSS.endPoint}
+    region: ${AliyunOSS.region}
+
+

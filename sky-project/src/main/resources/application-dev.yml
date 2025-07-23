@@ -10,3 +10,8 @@ sky:
     out:
       secretKey: pengzhiliu
       ttlTime: 86400000
+
+AliyunOSS:
+  bucket-name: liu-sunset-sky-take-out
+  endPoint: https://oss-cn-beijing.aliyuncs.com
+  region: cn-beijing

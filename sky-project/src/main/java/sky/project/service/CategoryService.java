@@ -2,7 +2,10 @@ package sky.project.service;
 
 import dto.CatePageDTO;
 import dto.CategoryDTO;
+import entity.Category;
 import vo.CatePageVO;
+
+import java.util.List;
 
 public interface CategoryService {
     //新增分类
@@ -15,4 +18,6 @@ public interface CategoryService {
     public void modifyCateService(CategoryDTO categoryDTO);
     //删除分类
     public void deleteCateService(Long id);
+    //根据type查找分类
+    public List<Category> selectByTypeService(Integer type);
 }
