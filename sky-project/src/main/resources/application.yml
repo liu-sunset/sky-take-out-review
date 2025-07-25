@@ -19,6 +19,15 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 100MB
+  # 配置Redis连接
+  data:
+    redis:
+      host: ${spring.data.redis.host}
+      password: ${spring.data.redis.password}
+      port: ${spring.data.redis.port}
+      database: ${spring.data.redis.database}
+
+
 # 配置mybatis
 mybatis:
   configuration:
@@ -53,5 +62,8 @@ sky:
     bucket-name: ${AliyunOSS.bucket-name}
     endpoint: ${AliyunOSS.endPoint}
     region: ${AliyunOSS.region}
+
+
+
 
 

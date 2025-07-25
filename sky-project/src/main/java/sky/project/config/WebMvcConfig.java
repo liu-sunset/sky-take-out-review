@@ -1,6 +1,7 @@
 package sky.project.config;
 
 import intercepter.JWTTokenAdminIntercepter;
+import intercepter.JWTTokenUserIntercepter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Autowired
     private JWTTokenAdminIntercepter jwtTokenAdminIntercepter;
+    @Autowired
+    private JWTTokenUserIntercepter jwtTokenUserIntercepter;
 
     @Override
     //添加拦截器
@@ -20,5 +23,10 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         interceptorRegistry.addInterceptor(jwtTokenAdminIntercepter)
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/admin/employee/login");
+
+        interceptorRegistry.addInterceptor(jwtTokenUserIntercepter)
+                .addPathPatterns("/user/**")
+                .excludePathPatterns("/user/user/login")
+                .excludePathPatterns("/user/shop/status");
     }
 }
