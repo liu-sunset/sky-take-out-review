@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import sky.project.mapper.CategoryMapper;
 import sky.project.mapper.SetmealDishMapper;
 import sky.project.mapper.SetmealMapper;
@@ -113,5 +114,25 @@ public class SetmealServiceImpl implements SetmealService {
         setmealMapper.deleteSetmealMapper(ids);
         //删除套餐菜品信息
         setmealDishMapper.deleteAllSetmealDishMapper(ids);
+    }
+
+    //根据分类ID查询套餐
+    @Override
+    public List<Setmeal> selectSetmealByCateIdService(Long categoryId) {
+        List<Setmeal> setmealList = setmealMapper.selectSetmealByCateIdMapper(categoryId);
+        List<Setmeal> overSetmealList = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(setmealList)){
+            for(Setmeal setmeal : setmealList){
+                if(setmeal.getStatus()==1)
+                    overSetmealList.add(setmeal);
+            }
+        }
+        return overSetmealList;
+    }
+
+    //根据套餐ID查询套餐详细菜品
+    @Override
+    public List<SetmealDish> selectSetmealDishById(Long id) {
+        return setmealDishMapper.selectBySetmealIdMapper(id);
     }
 }

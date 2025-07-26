@@ -107,4 +107,15 @@ public class DishServiceImpl implements DishService {
     public void modifyDishStatusService(Long id, Integer status) {
         dishMapper.modifyDishStatusMapper(id,status);
     }
+
+    //根据分类ID查询所有菜品和口味
+    @Override
+    public List<Dish> selectDishAndFlavorByCategoryId(Long categoryId) {
+        List<Dish> dishList = dishMapper.selectByCategoryId(categoryId);
+        for(Dish dish : dishList){
+            List<DishFlavor> dishFlavorList = dishFlavorMapper.selectByDishIdMapper(dish.getId());
+            dish.setFlavors(dishFlavorList);
+        }
+        return dishList;
+    }
 }

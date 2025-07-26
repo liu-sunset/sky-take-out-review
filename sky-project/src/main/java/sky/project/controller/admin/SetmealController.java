@@ -6,6 +6,7 @@ import dto.SetmealPageDTO;
 import entity.Setmeal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 import result.Result;
 import sky.project.mapper.SetmealDishMapper;
@@ -48,6 +49,7 @@ public class SetmealController {
     }
 
     @PutMapping
+    @CacheEvict(cacheNames = "setmealCache",allEntries = true)
     public Result modifySetmealController(@RequestBody Setmeal setmeal){
         log.info("修改套餐:{}",setmealMapper);
         setmealService.modifySetmealService(setmeal);

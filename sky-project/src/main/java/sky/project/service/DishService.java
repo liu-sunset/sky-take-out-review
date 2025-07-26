@@ -5,6 +5,7 @@ import entity.Dish;
 import vo.DishPageVO;
 import vo.ModifyDishVO;
 
+import java.lang.invoke.CallSite;
 import java.util.List;
 
 public interface DishService {
@@ -22,4 +23,6 @@ public interface DishService {
     public List<Dish> selectByCategoryIdService(Long categoryId);
     //修改菜品状态
     public void modifyDishStatusService(Long id,Integer status);
+    //根据分类ID查询所有菜品和口味
+    public List<Dish> selectDishAndFlavorByCategoryId(Long categoryId);
 }

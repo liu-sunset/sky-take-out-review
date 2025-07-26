@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.io.ResolverUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import result.Result;
 import sky.project.service.CategoryService;
@@ -43,6 +45,7 @@ public class CategoryController {
     }
 
     @PutMapping
+    @CacheEvict(cacheNames = "categoryCache",key = "#categoryDTO.getId()")
     public Result modifyCateController(@RequestBody CategoryDTO categoryDTO){
         log.info("修改分类:{}",categoryDTO);
         categoryService.modifyCateService(categoryDTO);
@@ -50,6 +53,7 @@ public class CategoryController {
     }
 
     @DeleteMapping
+    @CacheEvict(cacheNames = "categoryCache",key = "#id")
     public Result deleteCateController(Long id){
         log.info("删除分类:{}",id);
         categoryService.deleteCateService(id);

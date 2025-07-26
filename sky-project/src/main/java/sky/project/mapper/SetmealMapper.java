@@ -24,4 +24,6 @@ public interface SetmealMapper {
     public void modifySetmealMapper(Setmeal setmeal);
     //删除套餐基本信息
     public void deleteSetmealMapper(List<Long> ids);
+    //根据分类ID查询套餐
+    public List<Setmeal> selectSetmealByCateIdMapper(Long categoryId);
 }

@@ -23,4 +23,8 @@ public interface SetmealService {
     public void modifySetmealStatusService(Long id,Integer status);
     //批量删除套餐基本信息
     public void deleteSetmealService(List<Long> ids);
+    //根据分类ID查询套餐
+    public List<Setmeal> selectSetmealByCateIdService(Long categoryId);
+    //根据套餐ID查询套餐详细信息
+    public List<SetmealDish> selectSetmealDishById(Long id);
 }

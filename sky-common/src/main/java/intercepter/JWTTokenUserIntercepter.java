@@ -1,6 +1,5 @@
 package intercepter;
 
-import constant.EmpConstant;
 import constant.UserConstant;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ public class JWTTokenUserIntercepter implements HandlerInterceptor {
             return true;
         }
 
-        String token = request.getHeader("token");
+        String token = request.getHeader("authentication");
         try {
             log.info("用户token是{}",token);
             Claims claims = JWTUtils.parseJWT(jwtProperty.getSecretKey(),token);

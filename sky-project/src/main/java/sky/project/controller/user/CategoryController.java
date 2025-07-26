@@ -24,4 +24,5 @@ public class CategoryController {
         List<Category> categoryList = categoryService.selectByTypeService(type);
         return Result.success(categoryList);
     }
+
 }
