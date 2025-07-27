@@ -49,5 +49,4 @@ public class AliyunOSSUtils {
 
         return aliOssProperty.getEndpoint().split("//")[0] + "//" + aliOssProperty.getBucketName() + "." + aliOssProperty.getEndpoint().split("//")[1] + "/" + objectName;
     }
-
 }

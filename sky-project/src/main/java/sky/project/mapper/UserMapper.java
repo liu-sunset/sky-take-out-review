@@ -10,4 +10,6 @@ public interface UserMapper {
     public User userLoginMapper(String openid);
     //添加新用户
     public void addUserMapper(User user);
+    //查找用户
+    public User selectUserMapper(Long id);
 }

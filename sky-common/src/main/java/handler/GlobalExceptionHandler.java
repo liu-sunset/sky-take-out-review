@@ -22,7 +22,17 @@ public class GlobalExceptionHandler {
             return Result.error("已存在"+splits[2]);
         }
         else{
-            log.error("业务异常信息:{}", e.getMessage());
+            // 获取异常堆栈信息中的第一个元素（即异常发生的类和方法）
+            StackTraceElement[] stackTrace = e.getStackTrace();
+            if (stackTrace.length > 0) {
+                StackTraceElement element = stackTrace[0];
+                String className = element.getClassName();
+                String methodName = element.getMethodName();
+                int lineNumber = element.getLineNumber();
+                log.error("业务异常信息: {}，异常发生位置: {}#{}:{}", e.getMessage(), className, methodName, lineNumber);
+            } else {
+                log.error("业务异常信息:{}", e.getMessage());
+            }
             return Result.error(e.getMessage());
         }
     }
