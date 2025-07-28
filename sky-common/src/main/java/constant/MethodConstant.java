@@ -1,6 +1,5 @@
 package constant;
 
-import javax.print.DocFlavor;
 import java.io.Serializable;
 
 public class MethodConstant implements Serializable {

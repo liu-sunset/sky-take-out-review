@@ -6,7 +6,6 @@ import dto.UserLoginDTO;
 import com.alibaba.fastjson.JSONObject;
 import entity.User;
 import exception.UserException;
-import intercepter.JWTTokenUserIntercepter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import property.JWTProperty;

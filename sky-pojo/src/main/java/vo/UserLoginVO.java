@@ -1,6 +1,5 @@
 package vo;
 
-import ch.qos.logback.core.subst.Token;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

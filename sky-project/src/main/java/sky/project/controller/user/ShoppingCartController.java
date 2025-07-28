@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import result.Result;
-import sky.project.mapper.ShoppingCartMapper;
 import sky.project.service.ShoppingCartService;
 import utils.BaseContext;
 

@@ -1,10 +1,7 @@
 package sky.project.mapper;
 
-import entity.Dish;
 import entity.DishFlavor;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.logging.log4j.message.LoggerNameAwareMessage;
-import org.yaml.snakeyaml.events.Event;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package sky.project.mapper;
 
-import constant.OrderConstant;
 import entity.Order;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,6 +1,5 @@
 package sky.project.service.impl;
 
-import ch.qos.logback.classic.Logger;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import dto.DishPageDTO;
@@ -10,13 +9,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import result.Result;
 import sky.project.mapper.CategoryMapper;
 import sky.project.mapper.DishFlavorMapper;
 import sky.project.mapper.DishMapper;
-import sky.project.service.CategoryService;
 import sky.project.service.DishService;
 import vo.DishPageVO;
 import vo.ModifyDishVO;

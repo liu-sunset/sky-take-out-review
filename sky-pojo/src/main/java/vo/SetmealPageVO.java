@@ -1,6 +1,5 @@
 package vo;
 
-import entity.Setmeal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

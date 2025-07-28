@@ -1,6 +1,5 @@
 package sky.project.mapper;
 
-import constant.UserConstant;
 import entity.User;
 import org.apache.ibatis.annotations.Mapper;
 

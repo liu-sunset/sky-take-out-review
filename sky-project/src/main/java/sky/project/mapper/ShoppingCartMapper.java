@@ -2,7 +2,6 @@ package sky.project.mapper;
 
 import entity.ShoppingCart;
 import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
 @Mapper

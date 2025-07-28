@@ -1,7 +1,6 @@
 package dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.source.tree.PatternTree;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
