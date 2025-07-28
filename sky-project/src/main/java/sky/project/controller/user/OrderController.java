@@ -1,14 +1,14 @@
 package sky.project.controller.user;
 
 import dto.OrderDTO;
+import io.netty.util.ResourceLeakTracker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import result.Result;
 import sky.project.service.OrderService;
+import vo.LookOrderVO;
+import vo.OrderVO;
 
 @Slf4j
 @RestController
@@ -20,8 +20,14 @@ public class OrderController {
     @PostMapping("/submit")
     public Result addOrderController(@RequestBody OrderDTO orderDTO){
         log.info("用户下单：{}",orderDTO);
-        orderService.addOrderService(orderDTO);
-        return Result.success();
+        OrderVO orderVO = orderService.addOrderService(orderDTO);
+        return Result.success(orderVO);
     }
 
+    @GetMapping("/orderDetail/{id}")
+    public Result lookOrderDetailController(@PathVariable Long id){
+        log.info("查看订单详情:{}",id);
+        LookOrderVO lookOrderVO = orderService.lookOrderDetailService(id);
+        return Result.success(lookOrderVO);
+    }
 }

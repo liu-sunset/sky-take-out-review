@@ -9,4 +9,6 @@ import java.util.List;
 public interface OrderDetailMapper {
     //添加订单详细信息
     public void addOrderDetailMapper(List<OrderDetail> orderDetailList);
+    //查看订单详细信息
+    public List<OrderDetail> lookOrderDetailMapper(Long orderId);
 }

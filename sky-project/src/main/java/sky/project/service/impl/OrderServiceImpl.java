@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import sky.project.mapper.*;
 import sky.project.service.OrderService;
 import utils.BaseContext;
+import vo.LookOrderVO;
 import vo.OrderVO;
 
 import java.lang.invoke.CallSite;
@@ -65,5 +66,16 @@ public class OrderServiceImpl implements OrderService {
                 .orderNumber(order.getNumber())
                 .orderTime(order.getOrderTime())
                 .build();
+    }
+
+    //查看订单详情
+    @Override
+    public LookOrderVO lookOrderDetailService(Long id) {
+        Order order = orderMapper.lookOrderDetailMapper(id);
+        List<OrderDetail> orderDetailList = orderDetailMapper.lookOrderDetailMapper(id);
+        LookOrderVO lookOrderVO = new LookOrderVO();
+        BeanUtils.copyProperties(order,lookOrderVO);
+        lookOrderVO.setOrderDetailList(orderDetailList);
+        return lookOrderVO;
     }
 }
